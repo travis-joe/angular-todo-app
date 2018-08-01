@@ -1,24 +1,24 @@
-import { Component, OnInit } from "@angular/core";
-import { TodoDataService } from "../todo-data.service";
-import { Todo } from "../todo";
+import { Component, OnInit } from '@angular/core';
+import { TodoDataService } from '../todo-data.service';
+import { Todo } from '../todo';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"],
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
   providers: [TodoDataService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   todos: Todo[] = [];
 
   constructor(private todoDataService: TodoDataService) {}
 
-  public OnInit() {
+  ngOnInit() {
     this.todoDataService
       .getAllTodos()
       .subscribe(
         (todos) => {
-          this.todos = todos;
+          this.todos = todos.map(todo => new Todo(todo));
         }
       );
   }

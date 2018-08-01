@@ -16,14 +16,10 @@ export class ApiService {
   }
 
   // API: GET /todos
-  public getAllTodos(): Observable<Todo[]> {
+  public getAllTodos(): Observable<any> {
     return this.http
       .get(API_URL + '/todos')
       .pipe(
-        map(response => {
-          const todos = response.json();
-          return todos.map((todo) => new Todo(todo));
-        }),
         catchError(this.handleError)
       );
   }
@@ -34,7 +30,8 @@ export class ApiService {
       .post(API_URL + '/todos', todo)
       .pipe(
         map(response => {
-          return new Todo(response.json());
+          console.log(response);
+          return new Todo(response);
         }),
         catchError(this.handleError)
       );
@@ -47,7 +44,7 @@ export class ApiService {
       .get(API_URL + '/todos/' + todoId)
       .pipe(
         map(response => {
-          return new Todo(response.json());
+          return new Todo(response);
         }),
         catchError(this.handleError));
   }
@@ -58,7 +55,7 @@ export class ApiService {
       .put(API_URL + '/todos/' + todo.id, todo)
       .pipe(
         map(response => {
-          return new Todo(response.json());
+          return new Todo(response);
         }),
         catchError(this.handleError));
   }
