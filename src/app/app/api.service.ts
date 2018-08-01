@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Todo} from '../todo';
-import {Observable} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 
 const API_URL = environment.apiUrl;
@@ -30,7 +30,6 @@ export class ApiService {
       .post(API_URL + '/todos', todo)
       .pipe(
         map(response => {
-          console.log(response);
           return new Todo(response);
         }),
         catchError(this.handleError)
@@ -65,13 +64,13 @@ export class ApiService {
     return this.http
       .delete(API_URL + '/todos/' + todoId)
       .pipe(
-        map(response => null),
+        map(_ => null),
         catchError(this.handleError)
       );
   }
 
-  private handleError(error: Response | any) {
+  private handleError(error: Response | any): Observable<never> {
     console.error('ApiService::handleError', error);
-    return Observable.throw(error);
+    return throwError(error);
   }
 }
