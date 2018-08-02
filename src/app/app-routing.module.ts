@@ -14,9 +14,6 @@ const routes: Routes = [
   {
     path: 'todos',
     component: TodosComponent,
-    data: {
-      title: 'Example of static route data'
-    },
     resolve: {
       todos: TodosResolver
     }
