@@ -1,6 +1,1 @@
-<section class="todoapp">
-  <app-todo-list-header (add)="onAddTodo($event)"></app-todo-list-header>
-  <app-todo-list (remove)="removeTodo($event)" (toggleComplete)="toggleTodoComplete($event)" [todos]="todos">
-  </app-todo-list>
-  <app-todo-list-footer [todos]="todos" ></app-todo-list-footer>
-</section>
+<router-outlet></router-outlet>

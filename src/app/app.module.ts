@@ -10,9 +10,11 @@ import { TodoListFooterComponent } from './todo-list-footer/todo-list-footer.com
 import {TodoDataService} from './todo-data.service';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
+import { TodosComponent } from './todos/todos.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
-  declarations: [AppComponent, TodoListHeaderComponent, TodoListComponent, TodoListItemComponent, TodoListFooterComponent],
+  declarations: [AppComponent, TodoListHeaderComponent, TodoListComponent, TodoListItemComponent, TodoListFooterComponent, TodosComponent, PageNotFoundComponent],
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   providers: [TodoDataService],
   bootstrap: [AppComponent]

@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app/app.component';
+import {TodosComponent} from './todos/todos.component';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {TodosResolver} from './todos.resolver';
 
 const routes: Routes = [
   {
@@ -10,23 +13,24 @@ const routes: Routes = [
   },
   {
     path: 'todos',
-    children: [
-      {
-        path: '',
-        component: 'TodosPageComponent'
-      },
-      {
-        path: ':id',
-        component: 'TodoPageComponent'
-      }
-    ]
+    component: TodosComponent,
+    data: {
+      title: 'Example of static route data'
+    },
+    resolve: {
+      todos: TodosResolver
+    }
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: []
+  providers: [TodosResolver]
 })
 export class AppRoutingModule {
 }
