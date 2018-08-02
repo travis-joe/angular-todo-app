@@ -9,10 +9,11 @@ import { TodoListItemComponent } from './todo-list-item/todo-list-item.component
 import { TodoListFooterComponent } from './todo-list-footer/todo-list-footer.component';
 import {TodoDataService} from './todo-data.service';
 import {HttpClientModule} from '@angular/common/http';
+import {AppRoutingModule} from './app-routing.module';
 
 @NgModule({
   declarations: [AppComponent, TodoListHeaderComponent, TodoListComponent, TodoListItemComponent, TodoListFooterComponent],
-  imports: [BrowserModule, FormsModule, HttpClientModule],
+  imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   providers: [TodoDataService],
   bootstrap: [AppComponent]
 })
