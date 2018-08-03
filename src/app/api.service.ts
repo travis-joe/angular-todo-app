@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {environment} from '../../environments/environment';
+import {environment} from '../environments/environment';
 import {HttpClient} from '@angular/common/http';
-import {Todo} from '../todo';
+import {Todo} from './todo';
 import {Observable, throwError} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 
@@ -15,6 +15,16 @@ export class ApiService {
   constructor(private http: HttpClient) {
   }
 
+  public signIn(username: string, password: string) {
+    return this.http
+      .post(API_URL + '/sign-in', {
+        username,
+        password
+      })
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
   // API: GET /todos
   public getAllTodos(): Observable<any> {
     return this.http
